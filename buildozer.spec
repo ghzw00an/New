@@ -30,8 +30,8 @@ android.permissions = INTERNET,ACCESS_FINE_LOCATION,WRITE_EXTERNAL_STORAGE,READ_
 # (int) Target Android API
 android.api = 33
 
-# (int) Minimum API your APK will support
-android.minapi = 21
+# (int) Minimum API your APK will support (محدث إلى 24 لتتوافق مع مكتبة numpy)
+android.minapi = 24
 
 [buildozer]
 log_level = 2
