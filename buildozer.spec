@@ -9,8 +9,14 @@ package.name = poiexporter
 # (str) Package domain
 package.domain = org.poiexporter
 
-# (list) Source files to include
+# (list) Source files to include (let it include python files)
 source.include_exts = py,png,jpg,kv,atlas
+
+# (str) Source directory where the app lives
+source.dir = .
+
+# (str) Application versioning
+version = 1.0
 
 # (list) Application requirements
 requirements = python3,kivy,pandas,shapely
@@ -20,9 +26,6 @@ orientation = portrait
 
 # (list) Permissions
 android.permissions = INTERNET,ACCESS_FINE_LOCATION,WRITE_EXTERNAL_STORAGE,READ_EXTERNAL_STORAGE
-
-# (str) Presplash background color
-android.presplash_color = #FFFFFF
 
 # (int) Target Android API
 android.api = 33
