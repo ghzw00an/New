@@ -6,34 +6,63 @@ title = PoiExporter
 # (str) Package name
 package.name = poiexporter
 
-# (str) Package domain
+# (str) Package domain (needed for android packaging)
 package.domain = org.poiexporter
 
-# (list) Source files to include (let it include python files)
-source.include_exts = py,png,jpg,kv,atlas
+# (str) Source files to include (let it empty to include all files)
+source.include_exts = py,png,jpg,kv,atlas,csv,json,txt
 
-# (str) Source directory where the app lives
-source.dir = .
+# (list) Source files to include (let it empty to include all files)
+source.include_patterns = assets/*,images/*
 
 # (str) Application versioning
 version = 1.0
 
 # (list) Application requirements
+# comma separated e.g. requirements = sqlite3,kivy
 requirements = python3,kivy,pandas,shapely
 
-# (str) Supported orientations
-orientation = portrait
+# (str) Custom source folders for requirements
+#requirements.source.kivy = ../../../kivy
 
 # (list) Permissions
-android.permissions = INTERNET,ACCESS_FINE_LOCATION,WRITE_EXTERNAL_STORAGE,READ_EXTERNAL_STORAGE
+#android.permissions = INTERNET
 
-# (int) Target Android API
+# (list) Features
+#android.features = android.hardware.usb.host
+
+# (str) Supported orientations (landscape, portrait, all)
+orientation = portrait
+
+# (bool) Indicate if the application should be fullscreen or not
+fullscreen = 0
+
+# (string) Prerender icon glyph (deprecated)
+#icon.filename = %(source.dir)s/data/icon.png
+
+# (string) Presplash background color
+#presplash.color = #FFFFFF
+
+# (list) Clear application data on launch
+#android.clear_app_data_on_launch = False
+
+# (list) The android specific target API to use
 android.api = 33
 
-# (int) Minimum API your APK will support (محدث إلى 24 لتتوافق مع مكتبة numpy)
+# (int) Minimum API your APK will support
 android.minapi = 24
 
-[buildozer]
-log_level = 2
-warn_on_root = 1
-bin_dir = ./bin
+# (str) Android build tools version to use
+android.build_tools_version = 33.0.2
+
+# (str) Android NDK version to use
+#android.ndk = 25b
+
+# (bool) Use --private data storage (True) or --dir public storage (False)
+#android.private_storage = True
+
+# (list) The format used to package the app for each architecture
+android.archs = arm64-v8a
+
+# (bool) Enables AndroidX support
+android.androidx = True
