@@ -25,18 +25,15 @@ jobs:
         sudo apt install -y git zip unzip openjdk-17-jdk python3-pip autoconf libtool pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev libsqlite3-dev cmake libssl-dev
         pip install --upgrade buildozer cython
 
-    # 🔴 هذا هو الجزء الذي تم تعديله واستبداله
-    - name: Build APK with Buildozer
+    - name: Clear conflicting Android environment variables
       run: |
-        export ANDROID_HOME=$HOME/.android/sdk
-        export ANDROID_SDK_ROOT=$ANDROID_HOME
-        mkdir -p $ANDROID_HOME/licenses
-        
-        # كتابة ملفات الترخيص مباشرة (أسرع وأضمن طريقة في CI)
-        echo -e "\n8933bad161af4b6a5b573652ffc7aaf3aee85a47" > $ANDROID_HOME/licenses/android-sdk-license
-        echo -e "\nd56f5187479451eabf01fb78af6dfcb131b33910" > $ANDROID_HOME/licenses/android-sdk-preview-license
-        
-        # تشغيل البناء
+        echo "ANDROID_NDK_HOME=" >> $GITHUB_ENV
+        echo "ANDROID_NDK=" >> $GITHUB_ENV
+
+    - name: Build APK with Buildozer
+      env:
+        ANDROID_ACCEPT_LICENSE: "yes"
+      run: |
         buildozer android debug
 
     - name: Upload APK Artifact
