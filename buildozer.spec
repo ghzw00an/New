@@ -20,6 +20,7 @@ version = 1.0
 
 # (list) Application requirements
 # comma separated e.g. requirements = sqlite3,kivy
+# ملاحظة: تأكد من أن shapely و pandas تدعم البناء لـ Android (قد تحتاج إلى recipes خاصة)
 requirements = python3,kivy,pandas,shapely
 
 # (str) Custom source folders for requirements
@@ -46,13 +47,16 @@ fullscreen = 0
 # (list) Clear application data on launch
 #android.clear_app_data_on_launch = False
 
-# (list) The android specific target API to use
+# --- إعدادات الأندرويد ---
+
+# (str) The android specific target API to use
 android.api = 33
 
 # (int) Minimum API your APK will support
 android.minapi = 24
 
 # (str) Android build tools version to use
+# تم توحيدها مع android.api لتجنب مشاكل التحميل
 android.build_tools_version = 33.0.2
 
 # (str) Android NDK version to use
@@ -66,3 +70,7 @@ android.archs = arm64-v8a
 
 # (bool) Enables AndroidX support
 android.androidx = True
+
+# 🔴 هذا هو السطر الأهم لحل مشكلة الخطأ في GitHub Actions
+# يقبل تراخيص Android SDK تلقائياً دون الحاجة لتدخل يدوي
+android.accept_sdk_license = True
