@@ -27,9 +27,9 @@ jobs:
 
     - name: Build APK with Buildozer
       run: |
-        mkdir -p ~/.android
-        touch ~/.android/repositories.cfg
-        # إنشاء ملف إجابات تلقائية بقبول جميع تراخيص أندرويد
+        export ANDROID_HOME=$HOME/.android/sdk
+        mkdir -p $ANDROID_HOME
+        # قبول تراخيص أندرويد تلقائياً بشكل إجباري
         yes | sdkmanager --licenses || true
         buildozer android debug
 
