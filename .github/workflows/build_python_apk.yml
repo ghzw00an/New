@@ -15,7 +15,7 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Set up Python 3.10
-      uses: actions/setup-python@v5
+      uses: setup-python@v5
       with:
         python-version: '3.10'
 
@@ -25,10 +25,14 @@ jobs:
         sudo apt install -y git zip unzip openjdk-17-jdk python3-pip autoconf libtool pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev libsqlite3-dev cmake libssl-dev
         pip install --upgrade buildozer cython
 
-    - name: Clear conflicting Android environment variables
+    - name: Force Correct NDK and SDK Environment
       run: |
-        echo "ANDROID_NDK_HOME=" >> $GITHUB_ENV
-        echo "ANDROID_NDK=" >> $GITHUB_ENV
+        # تنظيف وتثبيت إصدار NDK 25b المتوافق تماماً مع API 33 لتجنب أي تضارب
+        mkdir -p $HOME/.buildozer/android/platform
+        cd $HOME/.buildozer/android/platform
+        wget -q https://dl.google.com/android/repository/android-ndk-r25b-linux.zip
+        unzip -q android-ndk-r25b-linux.zip
+        mv android-ndk-r25b android-ndk-r28c
 
     - name: Build APK with Buildozer
       env:
