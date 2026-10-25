@@ -26,11 +26,9 @@ jobs:
         pip install --upgrade buildozer cython
 
     - name: Build APK with Buildozer
+      env:
+        ANDROID_ACCEPT_LICENSE: "yes"
       run: |
-        mkdir -p ~/.android
-        touch ~/.android/repositories.cfg
-        yes y | sdkmanager --licenses || true
-        sdkmanager "build-tools;37.0.0" "platforms;android-33" || true
         buildozer android debug
 
     - name: Upload APK Artifact
