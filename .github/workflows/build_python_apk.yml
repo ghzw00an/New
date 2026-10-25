@@ -15,7 +15,7 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Set up Python 3.10
-      uses: setup-python@v5
+      uses: actions/setup-python@v5
       with:
         python-version: '3.10'
 
@@ -27,7 +27,6 @@ jobs:
 
     - name: Force Correct NDK and SDK Environment
       run: |
-        # تنظيف وتثبيت إصدار NDK 25b المتوافق تماماً مع API 33 لتجنب أي تضارب
         mkdir -p $HOME/.buildozer/android/platform
         cd $HOME/.buildozer/android/platform
         wget -q https://dl.google.com/android/repository/android-ndk-r25b-linux.zip
