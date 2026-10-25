@@ -27,10 +27,19 @@ jobs:
 
     - name: Build APK with Buildozer
       run: |
-        yes | buildozer android debug || true
+        buildozer android debug
+
+    - name: Find and Verify APK
+      run: |
+        find . -name "*.apk"
 
     - name: Upload APK Artifact
       uses: actions/upload-artifact@v4
       with:
         name: PoiExporter-Python-APK
-        path: bin/*.apk
+        path: |
+          bin/*.apk
+          *.apk
+          bin/*
+          app/bin/*.apk
+        if-no-files-found: ignore
